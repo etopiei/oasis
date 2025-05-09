@@ -33,7 +33,7 @@ let execute_qry sql =
   let open Lwt_result.Syntax in
   let open Caqti_request.Infix in
   let q = (Caqti_type.unit ->. Caqti_type.unit) sql in
-  let connection_uri = Fsoconf.sql_url |> Uri.of_string in
+  let connection_uri = Oasis_conf.sql_url |> Uri.of_string in
   let* (module DB : Caqti_lwt.CONNECTION) = Caqti_lwt.connect connection_uri in
   DB.exec q ()
 
@@ -65,13 +65,13 @@ let migrate_down_all () =
 let create_db () =
   let fn =
     let sql =
-      Stdlib.Format.sprintf {|CREATE DATABASE %s;|} Fsoconf.db_params.database
+      Stdlib.Format.sprintf {|CREATE DATABASE %s;|} Oasis_conf.db_params.database
     in
     let open Lwt_result.Syntax in
     let open Caqti_request.Infix in
     let q = (Caqti_type.unit ->. Caqti_type.unit) sql in
     let connection_uri =
-      Fsoconf.conn_url ~with_db:false Fsoconf.db_params |> Uri.of_string
+      Oasis_conf.conn_url ~with_db:false Oasis_conf.db_params |> Uri.of_string
     in
     let* (module DB : Caqti_lwt.CONNECTION) =
       Caqti_lwt.connect connection_uri

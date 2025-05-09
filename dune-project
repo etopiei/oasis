@@ -1,6 +1,6 @@
 (lang dune 3.11)
 
-(name fsocaml)
+(name oasis)
 
 (generate_opam_files true)
 
@@ -16,10 +16,10 @@
 (documentation https://url/to/documentation)
 
 (package
- (name fsocaml)
+ (name oasis)
  (synopsis "A short synopsis")
  (description "A longer description")
- (depends ocaml dune dream dream-livereload (petrol (= 1.2.4)) core_unix clap caqti-driver-postgresql safepass ppx_deriving letters embedded_ocaml_templates)
+ (depends ocaml dune dream (petrol (= 1.2.4)) fmlib_browser core_unix clap caqti-driver-postgresql safepass ppx_deriving letters)
  (tags
   (topics "to describe" your project)))
 
@@ -29,5 +29,3 @@
  (maintainers "TJ DeVries" "Petri-Johan Last")
  (synopsis "Generate boilerplate stuff for petrol to go zoom zoom")
  (depends ocaml ppxlib ppx_deriving))
-
-; See the complete stanza docs at https://dune.readthedocs.io/en/stable/dune-files.html#dune-project

@@ -1,12 +1,12 @@
-(** This module is used to configure your FSOCaml project. *)
+(** This module is used to configure your Oasis project. *)
 open Base
 
 type environment = Dev | Prod
 
-(** Determines the environment your project is running in. If FSO_ENV is unset,
+(** Determines the environment your project is running in. If OASIS_ENV is unset,
     a dev environment is assumed. *)
 let env =
-  match Sys.getenv "FSO_ENV" |> Option.value ~default:"dev" with
+  match Sys.getenv "OASIS_ENV" |> Option.value ~default:"dev" with
   | "dev" -> Dev
   | "prod" -> Prod
   | e -> failwith ("Invalid environment " ^ e)
@@ -28,7 +28,7 @@ let db_params =
     username = "postgres";
     password = "postgres";
     hostname = "localhost";
-    database = "fsocaml_dev";
+    database = "oasis_dev";
     pool_size = 10;
   }
 
@@ -42,18 +42,18 @@ let conn_url ?(with_db = true) params =
   else
     out
 
-(** If FSO_HOST is set, it is used as the IP address of your application.
+(** If OASIS_HOST is set, it is used as the IP address of your application.
     Otherwise defaults to localhost. *)
-let host = Sys.getenv "FSO_HOST" |> Option.value ~default:"localhost"
+let host = Sys.getenv "OASIS_HOST" |> Option.value ~default:"localhost"
 
-(** If FSO_PORT is set, it is used as the port of your application. Otherwise
+(** If OASIS_PORT is set, it is used as the port of your application. Otherwise
     defaults to 8080. *)
 let port =
-  Sys.getenv "FSO_PORT"
+  Sys.getenv "OASIS_PORT"
   |> Option.map ~f:Int.of_string
   |> Option.value ~default:8080
 
-(** If [FSO_ENV] is set to anything other than "dev", this will use the
+(** If [OASIS_ENV] is set to anything other than "dev", this will use the
     [DATABASE_URL] environment variable. Otherwise a database connection string
     is built using [db_params]. *)
 let sql_url =

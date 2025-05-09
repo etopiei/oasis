@@ -6,10 +6,14 @@ let router () =
       scope "/"
         [
           Dream.logger;
+          Dream.livereload;
           Dream.flash;
           Dream.cookie_sessions;
           Middleware.mailer_middleware Mailer.dev_mailer;
         ]
-        [ get "/" @@ Controllers.Home.index ];
+        [ 
+          get "/" @@ static "lib/webapp/index.html";
+          get "/webapp.js" @@ static "lib/webapp/webapp.js";
+        ];
       get "/**" @@ static "assets";
     ]

@@ -1,18 +1,18 @@
-(** Setup script to customize a new fsocaml project.
+(** Setup script to customize a new oasis project.
 
     Patches to `dune-project` and the various `dune` files are done by parsing
-    the S-expressions and replacing instances of `fsocaml` when it's in a
+    the S-expressions and replacing instances of `oasis` when it's in a
     non-label position in the `Sexp.List`.
 
     Source file patching (e.g. `bin/main.ml` is done by searching and replacing
-    references to the Fsocaml module itself. *)
+    references to the Oasis module itself. *)
 
 open Core
 
 let dune_files = [ "dune-project"; "test/dune"; "lib/dune"; "bin/dune" ]
 
 let rename_files =
-  [ "fsocaml.opam"; "fsocaml.opam.template"; "test/fsocaml.ml" ]
+  [ "oasis.opam"; "oasis.opam.template"; "test/oasis.ml" ]
 
 let indent n = String.init n ~f:(fun _ -> ' ')
 
@@ -85,31 +85,31 @@ let patch_mlfile filename ~from ~into =
   Out_channel.write_all filename ~data
 
 let () =
-  Clap.description "Set up a new fsocaml project.";
+  Clap.description "Set up a new oasis project.";
 
   let dbname =
     Clap.optional_string ~long:"dbname" ~short:'d' ~placeholder:"DB_NAME" ()
-      ~description:"Database name (default: fsocaml_dev)"
+      ~description:"Database name (default: oasis_dev)"
   in
 
   let projname =
     Clap.optional_string ~placeholder:"PROJECT_NAME" ()
-      ~description:"Name of the fsocaml project (default: fsocaml)"
+      ~description:"Name of the oasis project (default: oasis)"
   in
 
   Clap.close ();
 
-  let _ = Option.value dbname ~default:"fsocaml_dev" in
+  let _ = Option.value dbname ~default:"oasis_dev" in
   let cwd = Core_unix.getcwd () |> String.split ~on:'/' |> List.last in
-  let default_projname = Option.value cwd ~default:"fsocaml" in
+  let default_projname = Option.value cwd ~default:"oasis" in
   let projname' =
     String.lowercase (Option.value projname ~default:default_projname)
   in
 
-  List.iter dune_files ~f:(fun file -> patch_sfile file "fsocaml" projname');
+  List.iter dune_files ~f:(fun file -> patch_sfile file "oasis" projname');
 
   let projname'' = String.capitalize projname' in
-  patch_mlfile "bin/main.ml" ~from:"Fsocaml.Router.router"
+  patch_mlfile "bin/main.ml" ~from:"Oasis.Router.router"
     ~into:(projname'' ^ ".Router.router");
 
   printf "%d files were patched.\n" (List.length dune_files + 1);
@@ -118,7 +118,7 @@ let () =
   |> List.iter ~f:(fun oldpath ->
          let newpath =
            oldpath
-           |> String.substr_replace_all ~pattern:"fsocaml" ~with_:projname'
+           |> String.substr_replace_all ~pattern:"oasis" ~with_:projname'
          in
          Core_unix.rename ~src:oldpath ~dst:newpath);
 

@@ -1,4 +1,4 @@
 (library
- (name fsocaml)
+ (name oasis)
  (modules router)
- (libraries dream dream-livereload controllers views middleware))
+ (libraries dream controllers views middleware))

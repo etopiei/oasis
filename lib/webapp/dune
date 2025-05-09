@@ -1,0 +1,13 @@
+(executable
+ (name webapp)
+ (modes js)
+ (preprocess (pps js_of_ocaml-ppx))
+ (libraries fmlib_browser models)
+)
+
+(rule
+  (targets webapp.js)
+  (deps webapp.bc.js)
+  (mode (promote (until-clean)))
+  (action (copy webapp.bc.js webapp.js))
+)

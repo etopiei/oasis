@@ -1,11 +1,11 @@
 (executable
- (public_name fsocaml)
+ (public_name oasis)
  (name main)
  (modules main)
- (package fsocaml)
+ (package oasis)
  (libraries
-  fsocaml
-  fsoconf
+  oasis
+  oasis_conf
   base
   stdio
   dream
@@ -20,10 +20,10 @@
  (public_name migrate)
  (name migrate)
  (modules migrate)
- (package fsocaml)
+ (package oasis)
  (libraries
-  fsocaml
-  fsoconf
+  oasis
+  oasis_conf
   clap
   base
   core_unix
@@ -34,5 +34,5 @@
  (public_name setup)
  (name setup)
  (modules setup)
- (package fsocaml)
+ (package oasis)
  (libraries clap core core_unix))

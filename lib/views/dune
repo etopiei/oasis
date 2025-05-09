@@ -1,5 +1,0 @@
-(library
- (name views)
- (libraries dream layouts)
- (preprocess
-  (pps embedded_ocaml_templates.ppx_eml)))

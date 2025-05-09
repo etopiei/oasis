@@ -23,6 +23,7 @@ depends: [
   "letters"
   "embedded_ocaml_templates"
   "odoc" {with-doc}
+  "fmlib_browser"
 ]
 build: [
   ["dune" "subst"] {dev}
