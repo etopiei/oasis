@@ -4,13 +4,11 @@ This is an opinionated template repository to get up and running with a full-sta
 
 This is a fork of the wonderful [fsocaml](https://github.com/pjlast/fsocaml) but with no tailwind or templates. Instead the frontend for this framework is `Fmlib_browser` which allows writing an Elm-like frontend.
 
-Essentially if fsocaml is django the aim of oasis is: drf + elm.
-
 ## About
 
-This project is heavily inspired by Elixir Phoenix/Ruby on Rails. It also follows the same Model View Controller (MVC) setup and the "convention over configuration" mindset. The idea is that adding features to your project should be a no-brainer. Database access functions go into `lib/models`, routing goes into `lib/router.ml`, the handling of routes goes into `lib/controllers` and `lib/webapp` is where the front-end app goes.
+Oasis is an opinionated framework where it should be clear where to add new features.
 
-Hopefully this eliminates the decision fatigue around the trivial stuff, and lets you focus on simply building what you want to build.
+It's very much a work in progress right now and should be considered 'alpha-stage' right now. But the long-term goal is to have a easy-to-use and well documented full stack experience with Ocaml. And through this bring type-safety, speed, and simplicity to full-stack applications.
 
 ## Getting started
 
