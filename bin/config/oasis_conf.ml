@@ -16,6 +16,7 @@ type db_params = {
   password : string;
   hostname : string;
   database : string;
+  port : string;
   pool_size : int;
 }
 
@@ -29,13 +30,14 @@ let db_params =
     password = "postgres";
     hostname = "localhost";
     database = "oasis_dev";
+    port = "5432";
     pool_size = 10;
   }
 
 let conn_url ?(with_db = true) params =
   let out =
-    Stdlib.Format.sprintf "postgresql://%s:%s@%s" params.username
-      params.password params.hostname
+    Stdlib.Format.sprintf "postgresql://%s:%s@%s:%s" params.username
+      params.password params.hostname params.port
   in
   if with_db then
     out ^ "/" ^ params.database

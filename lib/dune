@@ -1,4 +1,4 @@
 (library
  (name oasis)
  (modules router)
- (libraries dream controllers views middleware))
+ (libraries dream middleware))

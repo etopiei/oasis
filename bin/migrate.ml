@@ -34,7 +34,7 @@ let execute_qry sql =
   let open Caqti_request.Infix in
   let q = (Caqti_type.unit ->. Caqti_type.unit) sql in
   let connection_uri = Oasis_conf.sql_url |> Uri.of_string in
-  let* (module DB : Caqti_lwt.CONNECTION) = Caqti_lwt.connect connection_uri in
+  let* (module DB : Caqti_lwt.CONNECTION) = Caqti_lwt_unix.connect connection_uri in
   DB.exec q ()
 
 (* Use the pool to execute queries *)
@@ -74,7 +74,7 @@ let create_db () =
       Oasis_conf.conn_url ~with_db:false Oasis_conf.db_params |> Uri.of_string
     in
     let* (module DB : Caqti_lwt.CONNECTION) =
-      Caqti_lwt.connect connection_uri
+      Caqti_lwt_unix.connect connection_uri
     in
     DB.exec q ()
   in

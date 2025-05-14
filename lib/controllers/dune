@@ -1,5 +1,0 @@
-(library
- (name controllers)
- (libraries dream views models)
- (preprocess
-  (pps lwt_ppx)))

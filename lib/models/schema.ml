@@ -1,3 +1,5 @@
+(*
 open Petrol
 
-let schema = StaticSchema.init ()
+Database schema go here   
+*)

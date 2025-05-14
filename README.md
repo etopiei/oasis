@@ -52,7 +52,19 @@ which can be used to give it a different name.
 
 ## Running the project
 
+### postgres
+
 Before you can run the project, you'll need to set up your database. Oasis assumes there's a Postgres instance running and that there is a `postgres` user with the password `postgres`. You can adjust these settings in `bin/config/oasis_conf.ml`. In the `db_params` record, adjust the parameters as desired.
+
+For quick setup you can run postgres in docker with the following command:
+
+```
+docker run --name oasis-postgres -e POSTGRES_PASSWORD=mysecretpassword -p 5432:5432 -d postgres
+```
+
+And edit `bin/config/oasis_conf.ml` to include the password in the previous command.
+
+### migrations
 
 Once you've configured your DB paramaters to your liking, you'll have to create the database and run any existing migrations:
 
@@ -61,21 +73,31 @@ dune exec migrate create
 dune exec migrate up
 ```
 
+### build the frontend
+
+Build the frontend with:
+
+```
+dune build lib/webapp/webapp.js
+```
+
+Note: at the moment you'll need to manually build the frontend after changes, but hopefully this will be fixed soon.
+
+### running the server
+
 Start the project by running
 
 ```bash
 dune exec myproject -w
 ```
 
-This will start the server with live-reloading enabled. Whenever you change a source file, the project will be recompiled and executed, and any open tabs will be reloaded.
+This will start the server with live-reloading enabled. Whenever you change a source file, the project will be recompiled and executed.
 
 ## Expanding your project
 
 The project is set up in a way so that most of the work you'll be doing is in the `lib` directory.
 
 You can add new routes in `lib/router.ml`.
-
-Route handlers are added to `lib/controllers`.
 
 Frontend changes are added to `lib/webapp`.
 
