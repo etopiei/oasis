@@ -28,9 +28,9 @@ let view (state: state): msg Html.t * string =
 
 let update (state: state): msg -> state * msg Command.t = function
     | Decrement ->
-        { state with counter = state.counter - 1 }, Command.none
+        { counter = state.counter - 1 }, Command.none
     | Increment ->
-        { state with counter = state.counter + 1 }, Command.none
+        { counter = state.counter + 1 }, Command.none
 
 let _ =
     basic_application

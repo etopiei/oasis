@@ -14,5 +14,5 @@ let router () =
       [ 
         get "/**" @@ static "lib/webapp/";
         get "/assets/**" @@ static "assets";
-      ];_
+      ];
     ]

@@ -2,7 +2,7 @@
  (name webapp)
  (modes js)
  (preprocess (pps js_of_ocaml-ppx))
- (libraries fmlib_browser models)
+ (libraries fmlib_browser)
 )
 
 (rule
