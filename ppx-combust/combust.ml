@@ -412,7 +412,7 @@ let generate_impl ~ctxt (_rec_flag, type_decls) name constraints =
             open Petrol.Postgres
 
             let table, fields =
-              StaticSchema.declare_table schema ~name:[%e name]
+              StaticSchema.declare_table ~name:[%e name]
                 ~constraints:[%e constraints]
                 Schema.([%e schema_fields])
 
